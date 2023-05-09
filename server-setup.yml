@@ -1,1 +1,24 @@
 
+---
+- name: Setup server
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Update packages
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+      tags: update
+
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+      tags: nginx
+
+    - name: Install OpenVPN
+      apt:
+        name: openvpn
+        state: present
+      tags: vpn
